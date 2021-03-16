@@ -9,18 +9,11 @@ let db = new sqlite3.Database('./projects.db', err => {
     console.log('connected to projects database')
 })
 
-db.all('SELECT * FROM projects', (err, data) => {
-    if(err) {
-        console.log(err.message)
-    }
-    data.forEach(e => {
-        console.log(e)
-    })
-})
+// Adding project to database
+/*
+db.run('CREATE TABLE projects(id INTEGER PRIMARY KEY, name TEXT NOT NULL, description TEXT NOT NULL, icon TEXT NOT NULL, badges TEXT, links TEXT)')
 
-/*  Adding project to database
-
-db.run('INSERT into projects(id, name, description, badges, links)values(1,"Chat App","Small chat app with dedicated servers.","html,javascript,css,node.js","https://github.com/OmerSabic/ChatAppClient,https://github.com/OmerSabic/ChatAppServer")', function(err, row) {
+db.run('INSERT into projects(id, name, description,icon, badges, links)values(1,"Chat App","Small chat app with dedicated servers.","https://i.imgur.com/d9b1CI9.png","html,javascript,css,nodejs","https://github.com/OmerSabic/ChatAppClient,https://github.com/OmerSabic/ChatAppServer")', function(err, row) {
     if(err) {
         console.log(err.message)
     }
@@ -31,23 +24,43 @@ db.run('INSERT into projects(id, name, description, badges, links)values(1,"Chat
 const app = express();
 app.set('view engine', 'ejs');
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 app.get(['/', '/index', '/home'], (req, res) => {
     res.render('main', {items:[{title:"Chat App", href:"localhost:3000/project/chat", icon:"https://cdn.pixabay.com/photo/2017/09/17/22/57/computer-2760136_960_720.jpg"}], title:"Home"})
 })
-// {title:"Storage Drive", href:"https://drive.omersabic.ga", icon:"https://cdn.pixabay.com/photo/2017/09/17/22/57/computer-2760136_960_720.jpg"}
 app.get('/about', (req, res) => {
     res.render('about', {title:"About"})
 })
 
+/*
+db.all('SELECT * FROM projects', (err, data) => {
+    if(err) {
+        console.log(err.message)
+    }
+    data.forEach(e => {
+        console.log(e)
+    })
+})
+*/
 
-app.get('/project/:project', (req, res) => {
-    res.render('single')
+
+app.get('/project/:projectName', async (req, res) => {
+    db.all('SELECT * FROM projects WHERE name = "' + req.params.projectName + '"', (err, data) => {
+        if(err) {
+            console.log(err.message)
+        }
+        var det = []
+        data.forEach(e => {
+            det.push(e)
+        })
+        res.render('project', {data:JSON.stringify(det[0])})
+        //return {name:det[0].name,description:det[0].description,icon:det[0].icon,badges:det[0].badges,links:det[0].links}
+        
+    })
 })
 
 app.get('/main', (req, res) => {
-    
     res.render('main')
 })
 

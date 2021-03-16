@@ -1,0 +1,25 @@
+{
+  "name": "mainWebsite",
+  "version": "1.0.0",
+  "description": "This is a simple website I made to show off all my projects in one place.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OmerSabic/Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OmerSabic/Portfolio/issues"
+  },
+  "homepage": "https://github.com/OmerSabic/Portfolio#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.2"
+  }
+}

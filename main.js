@@ -1,10 +1,33 @@
 const express = require('express');
-const path = require('path');
 const ejs = require('ejs');
-const firebase = require("firebase");
-require("firebase/firestore");
+const sqlite3 = require('sqlite3').verbose();
 
+let db = new sqlite3.Database('./projects.db', err => {
+    if(err) {
+        console.log(err.message)
+    }
+    console.log('connected to projects database')
+})
 
+db.all('SELECT * FROM projects', (err, data) => {
+    if(err) {
+        console.log(err.message)
+    }
+    data.forEach(e => {
+        console.log(e)
+    })
+})
+
+/*  Adding project to database
+
+db.run('INSERT into projects(id, name, description, badges, links)values(1,"Chat App","Small chat app with dedicated servers.","html,javascript,css,node.js","https://github.com/OmerSabic/ChatAppClient,https://github.com/OmerSabic/ChatAppServer")', function(err, row) {
+    if(err) {
+        console.log(err.message)
+    }
+    console.log('entry added to table')
+    db.close()
+})
+*/
 const app = express();
 app.set('view engine', 'ejs');
 
@@ -24,6 +47,7 @@ app.get('/project/:project', (req, res) => {
 })
 
 app.get('/main', (req, res) => {
+    
     res.render('main')
 })
 

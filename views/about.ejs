@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Omer Šabić | About</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="font-size: 2rem;">Omer Šabić</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: 0 auto; text-align: center;">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/about">ABOUT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid" style="overflow: hidden;">
+        <div class="row" style="margin-top:6vh; margin-left: 25px;">
+            <div class="col col-lg-5 col-sm-10">
+                <img src="images/img_2.jpg" alt="" style="width: 100%" id="identifier">
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5 col-sm-9" style="overflow: hidden;">
+                <h1>About me</h1>
+                <p>Hi, My name is Omer. I'm a <span id="age"></span> year old aspiring web developer from the small country of Bosnia and Herzegovina.</p>
+                <p>I've been coding since I was 10, getting the inspiration and coaching from my uncle.</p>
+                <p>Recently I've been focusing on learning node.js. This website uses it. It's not necessary but it's there.</p>
+
+                <div class="col-lg-10" style="overflow: hidden; text-align: center; width: 100%; margin: 50px auto;">
+                    <a href="https://github.com/OmerSabic">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.controllino.biz%2Fwp-content%2Fuploads%2F2020%2F02%2Fgithub-logo-white.png&f=1&nofb=1" alt="" class="icon">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng.pngtree.com%2Felement_our%2Fmd%2F20180520%2Fmd_5b012512d8e0c.png&f=1&nofb=1" class="icon" alt="">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var bday = new Date("2004/12/22 00:00:00")
+        function foo () {
+            var date = new Date()
+            var diff = Math.abs(bday.getTime() - date.getTime());
+            var yearDiff = (diff / 31536000000).toFixed(10)
+            document.getElementById('age').textContent = yearDiff 
+        }
+        setInterval(foo, 1000);
+    </script>
+
+</body>
+
+</html>

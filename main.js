@@ -20,14 +20,21 @@ db.run('INSERT into projects(id, name, description,icon, badges, links)values(1,
     console.log('entry added to table')
     db.close()
 })
+
 */
+
 const app = express();
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
 app.get(['/', '/index', '/home'], (req, res) => {
-    res.render('main', {items:[{title:"Chat App", href:"localhost:3000/project/chat", icon:"https://cdn.pixabay.com/photo/2017/09/17/22/57/computer-2760136_960_720.jpg"}], title:"Home"})
+    db.all('SELECT * FROM projects', (err, data) => {
+        if(err) {
+            console.log(err.message)
+        }
+        res.render('index', {data:JSON.stringify(data)})
+    })
 })
 app.get('/about', (req, res) => {
     res.render('about', {title:"About"})
@@ -55,8 +62,6 @@ app.get('/project/:projectName', async (req, res) => {
             det.push(e)
         })
         res.render('project', {data:JSON.stringify(det[0])})
-        //return {name:det[0].name,description:det[0].description,icon:det[0].icon,badges:det[0].badges,links:det[0].links}
-        
     })
 })
 
@@ -66,4 +71,4 @@ app.get('/main', (req, res) => {
 
 app.listen(3000, () => {
     console.log('server started');
-  });
+});

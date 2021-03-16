@@ -133,7 +133,7 @@ a:hover {
 }
 
 .image-wrap-2 .image-info h2 {
-    color: #fff; 
+    color: #FFF; 
 }
 
 .image-wrap-2:hover:before {
@@ -164,9 +164,10 @@ img:hover:not([id]) {
     width: 55px !important;
     margin-bottom: 15px;
     margin-right: 10px;
-    filter:grayscale(1);
+    filter:grayscale(1) invert(1);
     height: auto;
     transition: all .1s ease-in-out;
+    fill:#9FEAF9;
 }
 
 #badge:hover {

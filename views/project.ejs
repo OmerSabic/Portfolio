@@ -78,7 +78,8 @@
             var li = document.createElement('li')
             var a = document.createElement('a')
             a.href = e
-            li.innerHTML = a
+            a.innerHTML = e
+            li.appendChild(a)
             document.getElementById('links').appendChild(li)
         })
     </script>

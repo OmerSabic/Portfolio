@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <% var project = JSON.parse(data); var badges = project.badges.split(','); var links = project.links.split(',') %>
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <div class="container-fluid">
             <a class="navbar-brand" href="#" style="font-size: 2rem;">Omer Šabić</a>
@@ -39,19 +40,29 @@
     <div class="container-fluid" style="overflow: hidden;">
         <div class="row" style="margin-top:6vh; padding:25px;">
             <div class="col col-lg-5 col-sm-10" style="margin-bottom:25px;">
-                <img src="../images/img_2.jpg" alt="" style="width: 100%" id="coverImg">
+                <img src="<%= project.icon %>" alt="" style="width: 100%" id="coverImg">
             </div>
             <div class="col-lg-1"></div>
             <div class="col-lg-5 col-sm-9" style="overflow: hidden;">
                 <div id="badges">
-
+                    <% badges.forEach(e => { %>
+                        <img src="<%= '../images/' + e + '.svg' %>" id="badge">
+                    <% }) %>
                 </div>
-                <h1 id="title"></h1>
+                <h1 id="title"><%= project.name %></h1>
                 
-                <p id="desc"></p>
+                <p id="desc">
+                    <%= project.description %>
+                </p>
                 <div>
                     <h2>Link list:</h2>
-                    <ul id="links"></ul>
+                    <ul id="links">
+                        <% links.forEach(e => { %>
+                            <li>
+                                <a href="<%= e %>"><%= e %></a>
+                            </li>
+                        <% }) %>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -60,30 +71,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
-
-    <script>
-        var data = JSON.parse('<%-data%>')
-        document.getElementById('title').textContent = data.name
-        document.getElementById('coverImg').src = data.icon
-        document.getElementById('desc').textContent = data.description
-        var badges = data.badges.split(',')
-        badges.forEach(e => {
-            var img = document.createElement('img')
-            img.id = "badge"
-            img.src = '../images/' + e + '.svg'
-            document.getElementById('badges').appendChild(img)
-        })
-        var links = data.links.split(',')
-        links.forEach(e => {
-            var li = document.createElement('li')
-            var a = document.createElement('a')
-            a.href = e
-            a.innerHTML = e
-            li.appendChild(a)
-            document.getElementById('links').appendChild(li)
-        })
-    </script>
-
 </body>
 
 </html>

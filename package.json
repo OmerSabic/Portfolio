@@ -19,7 +19,6 @@
   "homepage": "https://github.com/OmerSabic/Portfolio#readme",
   "dependencies": {
     "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "sqlite3": "^5.0.2"
+    "express": "^4.17.1"
   }
 }

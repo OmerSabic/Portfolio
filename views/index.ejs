@@ -38,14 +38,14 @@
     </nav>
     <body>
         <div class="row" id="projectsList">
-            <% JSON.parse(data).forEach(e => { %>
+            <% JSON.parse(data).forEach((e, i) => { %>
                 <div class="col-lg-4">
                     <div class="image-wrap-2">
                         <div class="image-info">
                             <h2 class="mb-3">
                                 <%- e.name %>
                             </h2>
-                            <a href="<%-'/project/' + e.name %>" class="btn btn-outline-white py-2 px-4">More</a>
+                            <a href="<%-'/project/' + i %>" class="btn btn-outline-white py-2 px-4">More</a>
                         </div>
                         <img src="<%= e.icon %>"
                             alt="Image" class="img-fluid">
